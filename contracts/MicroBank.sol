@@ -34,10 +34,13 @@ contract MicroBank {
     function fundAccount(address destAccount, uint amount) 
     public
     {
+        LEDGER[destAccount] = LEDGER[destAccount]+amount; 
     }
 
     function transferToAccount(address destAccount, uint amount) 
     public 
     {
+        LEDGER[msg.sender]  = LEDGER[msg.sender]  - amount;
+        LEDGER[destAccount] = LEDGER[destAccount] + amount;
     }
 }
