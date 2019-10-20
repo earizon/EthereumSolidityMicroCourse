@@ -7,6 +7,15 @@ pragma solidity >=0.5.0 <0.6;
      */
 contract MicroBank {
 
+    mapping                  (address /*account owner*/ => uint /*account balance*/) private LEDGER;
+//  ^^^^^^^                   ^^^^^^^                      ^^^^^^                      ^^^^^^^
+// key/value structure        key type                     value type                visibility:
+// Java Map/Python Dict/...                                                      - internal: this contract and children
+//                                                                               - private : this contract
+//                                                                               - public  : readable to any contract 
+//                                                                                           and JSON-RPC clients
+//                                                                                           outside the EVM 
+
     address public owner;
 
     // Constructor, can receive one or many variables here; only one allowed
