@@ -15,8 +15,11 @@ contract MicroBank {
 //                                                                               - public  : readable to any contract 
 //                                                                                           and JSON-RPC clients
 //                                                                                           outside the EVM 
-
     address public owner;
+
+    // Events - publicize actions to external listeners
+    event AccountFunded  (address accountAddress, uint amount, uint finalBalance);
+    event AccountPayment (address accountAddress, uint amount, uint finalBalance);
 
     // Constructor, can receive one or many variables here; only one allowed
     constructor ()  
@@ -35,6 +38,7 @@ contract MicroBank {
     public
     {
         LEDGER[destAccount] = LEDGER[destAccount]+amount; 
+        emit AccountFunded(destAccount, amount, LEDGER[destAccount]); 
     }
 
     function transferToAccount(address destAccount, uint amount) 
@@ -42,5 +46,7 @@ contract MicroBank {
     {
         LEDGER[msg.sender]  = LEDGER[msg.sender]  - amount;
         LEDGER[destAccount] = LEDGER[destAccount] + amount;
+        emit AccountFunded  (destAccount , amount, LEDGER[destAccount]);
+        emit AccountPayment (msg.sender  , amount, LEDGER[msg.sender]  );
     }
 }
