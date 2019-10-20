@@ -22,4 +22,13 @@ contract MicroBank {
      //             signed can be fetch as msg.sender
     }
 
+    function fundAccount(address destAccount, uint amount) 
+    public
+    {
+    }
+
+    function transferToAccount(address destAccount, uint amount) 
+    public 
+    {
+    }
 }
