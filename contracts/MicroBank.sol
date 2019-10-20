@@ -37,6 +37,7 @@ contract MicroBank {
     function fundAccount(address destAccount, uint amount) 
     public
     {
+        require (owner == msg.sender, "@EVM,U,ONLY_OWNER_CAN_FUND_ACCOUNTS");
         LEDGER[destAccount] = LEDGER[destAccount]+amount; 
         emit AccountFunded(destAccount, amount, LEDGER[destAccount]); 
     }
@@ -44,8 +45,10 @@ contract MicroBank {
     function transferToAccount(address destAccount, uint amount) 
     public 
     {
+        require(LEDGER[msg.sender] >= amount, "@EVM,U,AMOUNT_GREATER_THAN_SENDER_BALANCE");
         LEDGER[msg.sender]  = LEDGER[msg.sender]  - amount;
         LEDGER[destAccount] = LEDGER[destAccount] + amount;
+        
         emit AccountFunded  (destAccount , amount, LEDGER[destAccount]);
         emit AccountPayment (msg.sender  , amount, LEDGER[msg.sender]  );
     }
