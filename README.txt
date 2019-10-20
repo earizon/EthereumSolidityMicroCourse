@@ -6,3 +6,5 @@ PREREQUISITES:
 - Ganache-cli: 6.7+. Dep
              $ npm install -g ganache-cli@6.7
 
+NOTE:
+- Each commit represent a different step to create the final app
