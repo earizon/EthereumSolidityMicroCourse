@@ -52,4 +52,11 @@ contract MicroBank {
         emit AccountFunded  (destAccount , amount, LEDGER[destAccount]);
         emit AccountPayment (msg.sender  , amount, LEDGER[msg.sender]  );
     }
+
+    function balanceOf(address accountAddress) 
+    view   // <- View: No state is modified => No mining needed 
+    public //          => Can be run locally and in parallel.
+    returns (uint) {
+        return uint(LEDGER[accountAddress]);
+    }   
 }
