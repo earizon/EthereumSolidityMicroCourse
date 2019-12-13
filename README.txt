@@ -8,3 +8,9 @@ PREREQUISITES:
 
 NOTE:
 - Each commit represent a different step to create the final app
+
+
+Once clond, exec next command on your UNIX-friendly shell-prompt for a 
+(git-based) quick presentation of the different steps :
+
+$ ./playback.sh
